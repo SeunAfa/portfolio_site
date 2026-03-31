@@ -1,0 +1,448 @@
+@import "tailwindcss";
+
+@theme {
+  --color-inkBlack: #00111c;
+  --color-inkDarkLightBlack: #001523;
+  --color-inkLightBlack: #001a2c;
+  --color-deepSpaceBlue: #002137;
+  --color-deepSpaceBlueLight: #00253e;
+  --color-yaleBlue: #00406c;
+}
+/* SVG Animation for hero section. */
+/*computer server SVG*/
+.svg-hero-section #Vector_168 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_163 {
+  animation: scaleHeight 2s infinite alternate;
+}
+.svg-hero-section #Vector_162 {
+  animation: scaleHeight 2s infinite alternate;
+}
+
+.svg-hero-section #Vector_159 {
+  animation: scaleHeight 2s infinite alternate;
+}
+
+.svg-hero-section #Vector_161 {
+  animation: scaleHeight 2s infinite alternate;
+}
+
+@keyframes scaleHeight {
+  0% {
+    clip-path: inset(0px 0px 0px 0px);
+  }
+
+  25% {
+    clip-path: inset(40% 0 0 0);
+  }
+  50% {
+    clip-path: inset(30% 0 0 0);
+  }
+
+  75% {
+    clip-path: inset(50% 0 0 0);
+  }
+  100% {
+    clip-path: inset(250% 0 0 0);
+  }
+}
+
+.svg-hero-section #Vector_204 {
+  animation: scaleWidth 2s infinite alternate;
+}
+.svg-hero-section #Vector_206 {
+  animation: scaleWidth 2s infinite alternate;
+}
+.svg-hero-section #Vector_208 {
+  animation: scaleWidth 2s infinite alternate;
+}
+.svg-hero-section #Vector_56 {
+  animation: scaleWidth 2s infinite alternate;
+}
+@keyframes scaleWidth {
+  0% {
+    clip-path: inset(0px 0px 0px 0px);
+  }
+
+  25% {
+    clip-path: inset(0% 30% 0 0);
+  }
+  50% {
+    clip-path: inset(0% 100% 0 0);
+  }
+
+  75% {
+    clip-path: inset(0% 10% 0 0);
+  }
+  100% {
+    clip-path: inset(0% 50% 0 0);
+  }
+}
+.svg-hero-section #Vector_56 {
+  animation: scaleWidthFromRight 2s infinite alternate;
+}
+.svg-hero-section #Vector_241 {
+  animation: scaleWidthFromRight 2s infinite alternate;
+}
+.svg-hero-section #Vector_242 {
+  animation: scaleWidthFromRight 2s infinite alternate;
+}
+.svg-hero-section #Vector_243 {
+  animation: scaleWidthFromRight 2s infinite alternate;
+}
+.svg-hero-section #Vector_244 {
+  animation: scaleWidthFromRight 2s infinite alternate;
+}
+@keyframes scaleWidthFromRight {
+  0% {
+    clip-path: inset(0px 0px 0px 0px);
+  }
+
+  25% {
+    clip-path: inset(0% 0 0 30%);
+  }
+  50% {
+    clip-path: inset(0% 0 0 100%);
+  }
+
+  75% {
+    clip-path: inset(0% 0 0 10%);
+  }
+  100% {
+    clip-path: inset(0% 0 0 50%);
+  }
+}
+
+.svg-hero-section #Vector_160 {
+  animation: colorChange 2s infinite alternate;
+}
+
+.svg-hero-section #Vector_203 {
+  animation: colorChange 2s infinite alternate;
+}
+
+.svg-hero-section #Vector_205 {
+  animation: colorChange 2s infinite alternate;
+}
+
+.svg-hero-section #Vector_207 {
+  animation: colorChange 2s infinite alternate;
+}
+
+.svg-hero-section #Vector_55 {
+  animation: colorChange 2s infinite alternate;
+}
+
+.svg-hero-section #Vector_107 {
+  animation: colorChange 2s infinite alternate;
+}
+
+.svg-hero-section #Vector_106 {
+  animation: colorChange 2s infinite alternate;
+}
+
+.svg-hero-section #Vector_105 {
+  animation: colorChange 2s infinite alternate;
+}
+
+.svg-hero-section #Vector_104 {
+  animation: colorChange 2s infinite alternate;
+}
+
+.svg-hero-section #Vector_103 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_102 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_101 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_100 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_99 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_98 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_117 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_116 {
+  animation: colorChange 2s infinite alternate;
+}
+
+.svg-hero-section #Vector_115 {
+  animation: colorChange 2s infinite alternate;
+}
+
+.svg-hero-section #Vector_114 {
+  animation: colorChange 2s infinite alternate;
+}
+
+.svg-hero-section #Vector_113 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_112 {
+  animation: colorChange 2s infinite alternate;
+}
+
+.svg-hero-section #Vector_111 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_112 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_110 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_109 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_108 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_112 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_127 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_126 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_125 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_124 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_123 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_122 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_121 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_120 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_119 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_118 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_137 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_136 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_135 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_134 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_133 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_132 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_131 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_130 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_129 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_128 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_234 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_231 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_233 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_229 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_230 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_227 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_226 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_228 {
+  animation: colorChange 2s infinite alternate;
+}
+.svg-hero-section #Vector_232 {
+  animation: colorChange 2s infinite alternate;
+}
+@keyframes colorChange {
+  0% {
+    fill: red;
+  }
+
+  25% {
+    fill: #133c55;
+  }
+  50% {
+    fill: #386fa4;
+  }
+
+  75% {
+    fill: #59a5d8;
+  }
+  100% {
+    fill: #84d2f6;
+  }
+}
+
+/*language SVG*/
+.svg-hero-section #text-box {
+  animation: text-box 3s infinite;
+}
+
+@keyframes text-box {
+  0% {
+    transform: translateX(-15px);
+  }
+  50% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(-15px);
+  }
+}
+
+.svg-hero-section #box_2 {
+  animation: box_2 3s infinite;
+}
+
+@keyframes box_2 {
+  0% {
+    transform: translateY(-5px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+.svg-hero-section #box_4 {
+  animation: box_4 3s infinite;
+}
+
+@keyframes box_4 {
+  0% {
+    transform: translateY(-5px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+.svg-hero-section #Lines {
+  animation: Lines 3s infinite;
+}
+
+@keyframes Lines {
+  0% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
+}
+
+/*Gears & World*/
+.svg-hero-section #Gears {
+  animation: travelToOriginal 3s infinite;
+}
+
+@keyframes travelToOriginal {
+  0% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-2px);
+  }
+}
+
+/*Cloud*/
+.svg-hero-section #Cloud {
+  animation: Cloud 3s infinite;
+}
+
+@keyframes Cloud {
+  0% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-0px);
+  }
+  100% {
+    transform: translateX(5px);
+  }
+}
+/*Floor*/
+.svg-hero-section #Floor {
+  animation: Floor 3s infinite;
+}
+
+@keyframes Floor {
+  0% {
+    transform: translateY(3px);
+  }
+
+  50% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(3px);
+  }
+}
+
+.svg-hero-section #laptopWindow-Group {
+  animation: laptopWindow_Group 3s infinite;
+}
+
+@keyframes laptopWindow_Group {
+  0% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(-5px);
+  }
+}

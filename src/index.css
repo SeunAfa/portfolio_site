@@ -1,0 +1,31 @@
+/* global styles (resets, fonts, colors, body, html). */
+@import "tailwindcss";
+
+@theme {
+  --color-inkBlack: #00111c;
+  --color-inkDarkLightBlack: #001523;
+  --color-inkLightBlack: #001a2c;
+  --color-deepSpaceBlue: #002137;
+  --color-deepSpaceBlueLight: #00253e;
+  --color-yaleBlue: #00406c;
+  --color-brightBlue: #4b73ff;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-inkBlack);
+}

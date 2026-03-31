@@ -1,0 +1,414 @@
+/* ═══════════════════════════════════════════════════
+   TOTAL CYCLE: 10.5s (loops forever)
+   ═══════════════════════════════════════════════════ */
+
+/* ─── LARGE MOBILE ──────────────────────────────────
+   Button red:   0s   →  2s    ( 0%  → 19%)
+   Title up:     2s   →  4s    (19%  → 38%)
+   Mountains:    4s   →  6s    (38%  → 57%)
+   Line 1:       6s   →  7.5s  (57%  → 71%)
+   Line 2:       7.5s →  9s    (71%  → 86%)
+   Line 3:       9s   → 10.5s  (86%  → 99%)
+   ─────────────────────────────────────────────────── */
+
+.svg-aboutme-section #button #Vector_56 {
+  animation: btn-colour 10.5s ease-in-out infinite;
+}
+@keyframes btn-colour {
+  0% {
+    fill: #4b73ff;
+  }
+  9% {
+    fill: #4b73ff;
+  }
+  19% {
+    fill: red;
+  }
+  99% {
+    fill: red;
+  }
+  100% {
+    fill: #4b73ff;
+  }
+}
+
+.svg-aboutme-section #Group_85 {
+  display: none;
+}
+
+.svg-aboutme-section #Vector_62 {
+  animation: title-move 10.5s ease-in-out infinite;
+}
+@keyframes title-move {
+  0% {
+    transform: translateY(35px);
+  }
+  19% {
+    transform: translateY(35px);
+  }
+  38% {
+    transform: translateY(0px);
+  }
+  99% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(35px);
+  }
+}
+
+.svg-aboutme-section #Vector_51,
+.svg-aboutme-section #Vector_50 {
+  animation: mountain-move 10.5s ease-in-out infinite;
+}
+@keyframes mountain-move {
+  0% {
+    transform: translateY(25px);
+    opacity: 0;
+  }
+  38% {
+    transform: translateY(25px);
+    opacity: 0;
+  }
+  44% {
+    transform: translateY(25px);
+    opacity: 0;
+  }
+  57% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  99% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(25px);
+    opacity: 0;
+  }
+}
+
+.svg-aboutme-section #Vector_55,
+.svg-aboutme-section #Vector_53,
+.svg-aboutme-section #Vector_54 {
+  animation-duration: 10.5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+.svg-aboutme-section #Vector_55 {
+  animation-name: line1;
+}
+.svg-aboutme-section #Vector_53 {
+  animation-name: line2;
+}
+.svg-aboutme-section #Vector_54 {
+  animation-name: line3;
+}
+
+@keyframes line1 {
+  0% {
+    clip-path: inset(0% 100% 0% 0%);
+  }
+  57% {
+    clip-path: inset(0% 100% 0% 0%);
+  }
+  71% {
+    clip-path: inset(0% 0% 0% 0%);
+  }
+  99% {
+    clip-path: inset(0% 0% 0% 0%);
+  }
+  100% {
+    clip-path: inset(0% 100% 0% 0%);
+  }
+}
+@keyframes line2 {
+  0% {
+    clip-path: inset(0% 100% 0% 0%);
+  }
+  71% {
+    clip-path: inset(0% 100% 0% 0%);
+  }
+  86% {
+    clip-path: inset(0% 0% 0% 0%);
+  }
+  99% {
+    clip-path: inset(0% 0% 0% 0%);
+  }
+  100% {
+    clip-path: inset(0% 100% 0% 0%);
+  }
+}
+@keyframes line3 {
+  0% {
+    clip-path: inset(0% 100% 0% 0%);
+  }
+  86% {
+    clip-path: inset(0% 100% 0% 0%);
+  }
+  99% {
+    clip-path: inset(0% 0% 0% 0%);
+  }
+  100% {
+    clip-path: inset(0% 100% 0% 0%);
+  }
+}
+
+/* ─── WINDOW — TOP LEFT ─────────────────────────────
+   imgPost slideUp:  0s   → 2.5s  ( 0% → 24%)
+   fillLeftToRight:  2.5s → 5.5s  (24% → 52%)
+   Hold:             5.5s → 10.5s (52% → 99%)
+   ─────────────────────────────────────────────────── */
+
+.svg-aboutme-section #imgPost {
+  animation: slideUp 10.5s ease-in-out infinite;
+}
+@keyframes slideUp {
+  0% {
+    transform: translateY(4px);
+    opacity: 0;
+  }
+  24% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  99% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(4px);
+    opacity: 0;
+  }
+}
+
+.svg-aboutme-section #Vector_102,
+.svg-aboutme-section #Vector_103 {
+  clip-path: inset(0 100% 0 0);
+  animation: topLeft-fill 10.5s ease-in-out infinite;
+}
+@keyframes topLeft-fill {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  24% {
+    clip-path: inset(0 100% 0 0);
+  } /* wait for imgPost */
+  52% {
+    clip-path: inset(0 0% 0 0);
+  } /* fully filled     */
+  99% {
+    clip-path: inset(0 0% 0 0);
+  } /* hold             */
+  100% {
+    clip-path: inset(0 100% 0 0);
+  } /* instant reset    */
+}
+
+/* ─── WINDOW — TOP RIGHT ────────────────────────────
+   fillTopToBtm:    0s    → 2.5s  ( 0% → 24%)
+   Hold:            2.5s  → 5.25s (24% → 50%)
+   fillLeftToRight: 5.25s → 8s    (50% → 76%)
+   Hold:            8s    → 10.5s (76% → 99%)
+   ─────────────────────────────────────────────────── */
+
+.svg-aboutme-section #Vector_119 {
+  clip-path: inset(0 0 100% 0);
+  animation: fillTopToBtm 10.5s ease-in-out infinite;
+}
+@keyframes fillTopToBtm {
+  0% {
+    clip-path: inset(0 0 100% 0);
+  }
+  24% {
+    clip-path: inset(0 0 0% 0);
+  } /* filled           */
+  99% {
+    clip-path: inset(0 0 0% 0);
+  } /* holds            */
+  100% {
+    clip-path: inset(0 0 100% 0);
+  } /* instant reset    */
+}
+
+.svg-aboutme-section #Vector_120,
+.svg-aboutme-section #Vector_121,
+.svg-aboutme-section #Vector_122,
+.svg-aboutme-section #Vector_123,
+.svg-aboutme-section #Vector_124,
+.svg-aboutme-section #Vector_125,
+.svg-aboutme-section #Vector_126 {
+  clip-path: inset(0 100% 0 0);
+  animation: topRight-fill 10.5s ease-in-out infinite;
+}
+@keyframes topRight-fill {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  25% {
+    clip-path: inset(0 100% 0 0);
+  }
+  50% {
+    clip-path: inset(0 0% 0 0);
+  }
+  62% {
+    clip-path: inset(0 0% 0 0);
+  }
+  99% {
+    clip-path: inset(0 0% 0 0);
+  }
+  100% {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+/* ─── WINDOW — BTM LEFT & RIGHT ─────────────────────────────
+   Title lines:    0s    → 3.5s  ( 0% → 33%)
+   Subtitle:       3.5s  → 5.25s (33% → 50%)
+   SlideUp 1:      5.25s → 7s    (50% → 67%)
+   Subtitle 2:     7s    → 8.75s (67% → 83%)
+   SlideUp 2:      8.75s → 10.5s (83% → 99%)
+   ─────────────────────────────────────────────────── */
+
+/* Title lines — write 0% → 33% */
+.svg-aboutme-section #Vector_137,
+.svg-aboutme-section #Vector_138,
+.svg-aboutme-section #Vector_155,
+.svg-aboutme-section #Vector_156 {
+  clip-path: inset(0 100% 0 0);
+  animation: btmLeft-title 10.5s ease-in-out infinite;
+}
+@keyframes btmLeft-title {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  33% {
+    clip-path: inset(0 0% 0 0);
+  } /* written          */
+  99% {
+    clip-path: inset(0 0% 0 0);
+  } /* hold             */
+  100% {
+    clip-path: inset(0 100% 0 0);
+  } /* instant reset    */
+}
+
+/* Subtitle 1 — writes 33% → 50% */
+.svg-aboutme-section #Vector_139,
+.svg-aboutme-section #Vector_157 {
+  clip-path: inset(0 100% 0 0);
+  animation: btmLeft-sub1 10.5s ease-in-out infinite;
+}
+@keyframes btmLeft-sub1 {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  33% {
+    clip-path: inset(0 100% 0 0);
+  } /* wait for title   */
+  50% {
+    clip-path: inset(0 0% 0 0);
+  } /* written          */
+  99% {
+    clip-path: inset(0 0% 0 0);
+  } /* hold             */
+  100% {
+    clip-path: inset(0 100% 0 0);
+  } /* instant reset    */
+}
+
+/* SlideUp 1 — appears 50% → 67% */
+.svg-aboutme-section #Vector_140,
+.svg-aboutme-section #Vector_158 {
+  clip-path: inset(0 0 100% 0);
+  animation: btmLeft-slideUp1 10.5s ease-in-out infinite;
+}
+@keyframes btmLeft-slideUp1 {
+  0% {
+    clip-path: inset(0 0 100% 0);
+  }
+  50% {
+    clip-path: inset(0 0 100% 0);
+  } /* wait             */
+  67% {
+    clip-path: inset(0 0 0% 0);
+  } /* revealed         */
+  99% {
+    clip-path: inset(0 0 0% 0);
+  } /* hold             */
+  100% {
+    clip-path: inset(0 0 100% 0);
+  } /* instant reset    */
+}
+
+/* Subtitle 2 — writes 67% → 83% */
+.svg-aboutme-section #Vector_142,
+.svg-aboutme-section #Vector_160 {
+  clip-path: inset(0 100% 0 0);
+  animation: btmLeft-sub2 10.5s ease-in-out infinite;
+}
+@keyframes btmLeft-sub2 {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  67% {
+    clip-path: inset(0 100% 0 0);
+  } /* wait             */
+  83% {
+    clip-path: inset(0 0% 0 0);
+  } /* written          */
+  99% {
+    clip-path: inset(0 0% 0 0);
+  } /* hold             */
+  100% {
+    clip-path: inset(0 100% 0 0);
+  } /* instant reset    */
+}
+
+/* SlideUp 2 — appears 83% → 99% */
+.svg-aboutme-section #Vector_141,
+.svg-aboutme-section #Vector_159 {
+  clip-path: inset(0 0 100% 0);
+  animation: btmLeft-slideUp2 10.5s ease-in-out infinite;
+}
+@keyframes btmLeft-slideUp2 {
+  0% {
+    clip-path: inset(0 0 100% 0);
+  }
+  83% {
+    clip-path: inset(0 0 100% 0);
+  } /* wait             */
+  99% {
+    clip-path: inset(0 0 0% 0);
+  } /* revealed         */
+  100% {
+    clip-path: inset(0 0 100% 0);
+  } /* instant reset    */
+}
+
+.svg-aboutme-section #Vector_143,
+.svg-aboutme-section #Vector_144,
+.svg-aboutme-section #Vector_161,
+.svg-aboutme-section #Vector_162 {
+  animation: btn-slideUp 10.5s ease-in-out infinite;
+}
+
+@keyframes btn-slideUp {
+  0% {
+    transform: translateY(4px);
+    opacity: 0;
+  }
+  24% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  99% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(4px);
+    opacity: 0;
+  }
+}
