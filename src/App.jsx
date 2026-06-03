@@ -1,4 +1,6 @@
 import "./App.css";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import NavBar from "./components/NavBar";
 import HeroSection from "./components/HeroSection";
 import AboutMeSection from "./components/AboutMeSection";
@@ -7,6 +9,13 @@ import ProjectsSection from "./components/ProjectsSection";
 import ContactMeSection from "./components/ContactMeSection";
 import SpotlightFollower from "./components/SpotlightFollower";
 import ScrollProgress from "./components/ScrollProgress";
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Mobile browsers resize the viewport when the address/tool bar hides on scroll.
+// Without this, ScrollTrigger treats that as a real resize, refreshes, and the
+// pinned About/Projects sections jump around. ignoreMobileResize stops that.
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 function App() {
 
