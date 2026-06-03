@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { useMediaQuery } from "react-responsive";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -37,15 +36,8 @@ export default function ProjectsSection() {
   const heroOpenBracketRef  = useRef(null);
   const heroCloseBracketRef = useRef(null);
 
-  // The pinned horizontal-pan experience is desktop-only. On phones/tablets it
-  // forces a fixed-height, sideways-scrolling layout that clips content and
-  // ignores the mobile browser toolbar — so below lg we stack panels vertically
-  // with natural height and skip the GSAP pin entirely.
-  const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
-
   useGSAP(
     () => {
-      if (!isDesktop) return; // mobile: no pin/pan, plain vertical stack
       const section = sectionRef.current;
       const wrapper = wrapperRef.current;
       const panels = wrapper.children;
@@ -246,24 +238,24 @@ export default function ProjectsSection() {
         id: "projects-unified",
       });
     },
-    { scope: sectionRef, dependencies: [isDesktop] }
+    { scope: sectionRef }
   );
 
   return (
     <section
       id="projects"
       ref={sectionRef}
-      className="relative z-[20] w-full bg-inkBlack lg:h-[calc(100dvh-79px)] lg:overflow-hidden"
+      className="relative z-[20] w-full h-[calc(100dvh-79px)] overflow-hidden bg-inkBlack"
     >
       <div
         ref={wrapperRef}
-        className="flex flex-col lg:flex-row w-full will-change-transform"
-        style={isDesktop ? { width: `${projects.length * 100}vw` } : undefined}
+        className="flex flex-row will-change-transform"
+        style={{ width: `${projects.length * 100}vw` }}
       >
         {projects.map((project) => (
           <div
             key={project.id}
-            className="flex-shrink-0 w-full min-h-[calc(100dvh-79px)] py-12 lg:py-0 lg:w-screen lg:h-[calc(100dvh-79px)] flex items-center justify-center relative bg-inkBlack"
+            className="flex-shrink-0 w-screen h-[calc(100dvh-79px)] flex items-center justify-center relative bg-inkBlack"
             // style={{ backgroundColor: project.bg }}
           >
             {project.isProject && (
