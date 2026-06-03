@@ -195,7 +195,7 @@ export default function HeroSection() {
   );
 
   return (
-    <section ref={sectionRef} className="mt-[79px] min-h-[calc(100dvh-79px)] w-full flex flex-col min-[900px]:flex-row justify-center items-start min-[900px]:items-center relative z-10 overflow-hidden bg-inkBlack">
+    <section ref={sectionRef} className="mt-[79px] min-h-[calc(100svh-79px)] w-full flex flex-col min-[900px]:flex-row justify-center items-start min-[900px]:items-center relative z-10 overflow-hidden bg-inkBlack">
 
       {isLarge ? (
         <div className="w-full flex min-[900px]:flex-row min-[900px]:gap-2 justify-center items-center mx-auto max-w-7xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl px-8 min-[900px]:px-10 lg:px-16">

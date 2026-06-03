@@ -560,7 +560,7 @@ export default function MySkillsSection() {
   return (
     <section
       id="skills"
-      className="min-h-[calc(100dvh-79px)] w-full flex flex-col overflow-hidden relative z-10 bg-inkBlack"
+      className="min-h-[calc(100svh-79px)] w-full flex flex-col overflow-hidden relative z-10 bg-inkBlack"
     >
       {/* ── Background ───────────────────────────────────────────── */}
       <div className="pointer-events-none absolute inset-0 z-0">

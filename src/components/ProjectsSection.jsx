@@ -245,7 +245,7 @@ export default function ProjectsSection() {
     <section
       id="projects"
       ref={sectionRef}
-      className="relative z-[20] w-full h-[calc(100dvh-79px)] overflow-hidden bg-inkBlack"
+      className="relative z-[20] w-full h-[calc(100svh-79px)] overflow-hidden bg-inkBlack"
     >
       <div
         ref={wrapperRef}
@@ -255,7 +255,7 @@ export default function ProjectsSection() {
         {projects.map((project) => (
           <div
             key={project.id}
-            className="flex-shrink-0 w-screen h-[calc(100dvh-79px)] flex items-center justify-center relative bg-inkBlack"
+            className="flex-shrink-0 w-screen h-[calc(100svh-79px)] flex items-center justify-center relative bg-inkBlack"
             // style={{ backgroundColor: project.bg }}
           >
             {project.isProject && (

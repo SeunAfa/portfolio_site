@@ -299,7 +299,7 @@ export default function AboutMeSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="min-h-[calc(100dvh-79px)] flex items-center justify-center px-4 sm:px-6 relative z-10 overflow-hidden bg-inkBlack"
+      className="min-h-[calc(100svh-79px)] flex items-center justify-center px-4 sm:px-6 relative z-10 overflow-hidden bg-inkBlack"
     >
       {/* SECTION 1 — Title page */}
       <div
