@@ -265,20 +265,22 @@ export default function ProjectsSection() {
             )}
             {project.isProject ? (
               <div
-                className="projectContent-container w-full h-full flex flex-col sm:flex-col md:flex-col lg:flex-row"
+                className="projectContent-container w-full h-full flex flex-col justify-center lg:justify-start lg:flex-row"
                 // style={{ border: "2px solid red" }}
               >
 
                 {/* IMAGE HALF — overflow-hidden clips the slide-up */}
-                <div className="project-imgPlaceholder flex-1 min-h-0 flex justify-center items-center overflow-hidden bg-inkLightBlack px-8 py-8 lg:py-6 lg:pr-5 lg:pl-[68px]">
+                <div className="project-imgPlaceholder flex-none lg:flex-1 lg:min-h-0 flex justify-center items-center overflow-hidden bg-inkLightBlack px-8 py-4 lg:py-6 lg:pr-5 lg:pl-[68px]">
                   {/* Screen mockup — js-project-img kept for GSAP targeting */}
                   <div className="js-project-img project-imgContent relative flex items-center justify-center w-full h-full">
                     <div
-                      className="relative select-none"
+                      className="relative select-none max-w-[78%] sm:max-w-[60%] lg:max-w-full mx-auto"
                       style={{
                         // Fill the column width, but never let the 16/9 frame grow
                         // taller than the section's available height (which would be
                         // clipped on short viewports). Cap width by height * 16/9.
+                        // (On mobile the max-w above also keeps the video compact so
+                        // the info below it has room within the fixed-height panel.)
                         width: "min(100%, calc((100svh - 150px) * 16 / 9))",
                         filter: "drop-shadow(0 24px 48px rgba(0,0,0,0.75))",
                       }}
@@ -314,7 +316,7 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* INFO HALF — overflow-hidden clips the slide-down -- bg-inkDarkLightBlack */}
-                <div className="project-info flex-1 min-h-0 flex flex-col justify-center px-6 sm:px-8 md:px-10 py-6 md:py-8 overflow-hidden">
+                <div className="project-info flex-none lg:flex-1 lg:min-h-0 flex flex-col justify-center px-6 sm:px-8 md:px-10 py-2 md:py-8 overflow-hidden">
                   <div className="js-project-info">
                     <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-left">
                       {project.title}
