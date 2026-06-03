@@ -176,9 +176,11 @@ export default function ProjectsSection() {
         // jerk when going back into / past Projects.)
         scrub: 1,
         anticipatePin: 1,
-        // When leaving fast, jump the scrubbed animation to its end/start
-        // immediately so the section unpins without a visible lag.
-        fastScrollEnd: 3000,
+        // NOTE: fastScrollEnd was removed. It released the pin early whenever
+        // scroll velocity was high (a normal mobile flick, or the fast smooth-
+        // scroll from a nav click), which skipped the project panel entirely and
+        // dumped the user into Contact. Without it the pin holds and the snap
+        // lands on a panel instead.
         animation: masterTl,
         invalidateOnRefresh: true,
         // onLeave / onLeaveBack — force animation to its boundary so the scrub
@@ -259,7 +261,7 @@ export default function ProjectsSection() {
             // style={{ backgroundColor: project.bg }}
           >
             {project.isProject && (
-              <span className="absolute top-4 right-12 font-display text-[10px] sm:text-xs tracking-[0.3em] text-muted-foreground/60 bg-inkDarkLightBlack backdrop-blur-sm px-3 py-1.5 rounded-sm z-20">
+              <span className="absolute top-4 right-12 font-display text-[10px] sm:text-xs tracking-[0.3em] text-muted-foreground/60 bg-inkLightBlack backdrop-blur-sm px-3 py-1.5 rounded-sm z-20">
                 {project.label}
               </span>
             )}
