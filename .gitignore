@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# secrets & large media
+.env
+*.mp4
+public/nexahub.mp4

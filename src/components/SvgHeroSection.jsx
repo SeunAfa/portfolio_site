@@ -4,10 +4,11 @@ export default function SvgHeroSection({ className }) {
   return (
     <>
       <svg
-        className={`${className} w-full h-full svg-hero-section`}
+        className={`${className} svg-hero-section`}
         width="355"
         height="336"
         viewBox="0 0 255 236"
+        overflow="visible"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >

@@ -3,7 +3,65 @@ body {
   overflow-x: hidden;
 }
 
+/* ── MySkills icon sizing ─────────────────────────────────────────────── */
+/* SVGs carry their own width/height attributes (36–57px, varying aspect).  */
+/* Cap them to the .skill-icon box so every icon is uniform and never        */
+/* overflows its cell — preserves aspect ratio via the SVG viewBox.          */
+.skill-icon > svg {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* ── MySkills fade-in ─────────────────────────────────────────────────── */
+
+/* Heading + subtitle slide up first */
+.skills-content h1,
+.skills-content p {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.skills-content p { transition-delay: 0.1s; }
+
+/* Cards stagger in after heading */
+.skills-content .skill-card {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition-delay: var(--card-delay, 0.15s);
+}
+
+/* Triggered state */
+.skills-content.skills-visible h1,
+.skills-content.skills-visible p,
+.skills-content.skills-visible .skill-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 #root {
   margin: 0 auto;
-  text-align: center;
+}
+
+/* ── Custom scrollbar ─────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(75, 115, 255, 0.45);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(75, 115, 255, 0.75);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(75, 115, 255, 0.45) transparent;
 }

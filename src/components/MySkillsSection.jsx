@@ -1,110 +1,28 @@
 import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function MySkillsSection() {
-  const sectionRef = useRef(null);
-  const headingRef = useRef(null);
-  const subtitleRef = useRef(null);
-  const gridRef = useRef(null);
+  const contentRef = useRef(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
+    const el = contentRef.current;
+    if (!el) return;
 
-      if (prefersReducedMotion) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("skills-visible");
+        } else {
+          // Only reset when section is below viewport so animation replays on scroll down
+          if (entry.boundingClientRect.top > 0) {
+            el.classList.remove("skills-visible");
+          }
+        }
+      },
+      { threshold: 0.15 }
+    );
 
-      // ── Elements ─────────────────────────────────────────────
-      const cards = gsap.utils.toArray(".skill-card");
-
-      // ── 1. Heading + Subtitle Timeline ───────────────────────
-      const introTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 60%",
-          toggleActions: "play none none reset", // ✅ retrigger enabled
-        },
-      });
-
-      introTl
-        .from(headingRef.current, {
-          y: 40,
-          autoAlpha: 0,
-          duration: 0.8,
-          ease: "expo.out",
-        })
-        .from(
-          subtitleRef.current,
-          {
-            y: 24,
-            autoAlpha: 0,
-            duration: 0.7,
-            ease: "power2.out",
-          },
-          "-=0.4"
-        );
-
-      // ── 2. Skill Cards Animation ─────────────────────────────
-      if (cards.length) {
-        gsap.from(cards, {
-          scrollTrigger: {
-            trigger: gridRef.current,
-            start: "top 65%",
-            toggleActions: "play none none reset", // ✅ retrigger
-          },
-          y: 60,
-          autoAlpha: 0,
-          scale: 0.9,
-          rotateX: 10,
-          filter: "blur(6px)",
-          duration: 0.7,
-          stagger: {
-            each: 0.08,
-            ease: "power2.out",
-          },
-          ease: "power3.out",
-          clearProps: "transform,filter",
-        });
-      }
-
-      // ── 3. Hover Animation (no stacking, reversible) ─────────
-      cards.forEach((card) => {
-        const icon = card.querySelector(".skill-icon");
-        if (!icon) return;
-
-        const hoverAnim = gsap.to(icon, {
-          y: -6,
-          scale: 1.18,
-          duration: 0.3,
-          ease: "power2.out",
-          paused: true,
-        });
-
-        const leaveAnim = gsap.to(icon, {
-          y: 0,
-          scale: 1,
-          duration: 0.4,
-          ease: "elastic.out(1, 0.5)",
-          paused: true,
-        });
-
-        card.addEventListener("mouseenter", () => {
-          leaveAnim.pause(0);
-          hoverAnim.play();
-        });
-
-        card.addEventListener("mouseleave", () => {
-          hoverAnim.pause(0);
-          leaveAnim.play();
-        });
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   const skills = [
@@ -572,7 +490,7 @@ export default function MySkillsSection() {
           class="icon-mySkills"
           width="36"
           height="36"
-          viewBox="0 0 36 52"
+          viewBox="0 0 36 36"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -595,7 +513,7 @@ export default function MySkillsSection() {
           class="icon-mySkills"
           width="36"
           height="36"
-          viewBox="0 0 54 52"
+          viewBox="18 0 36 36"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -619,7 +537,7 @@ export default function MySkillsSection() {
           class="icon-mySkills"
           width="36"
           height="36"
-          viewBox="0 0 49 52"
+          viewBox="13 0 36 36"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -639,23 +557,43 @@ export default function MySkillsSection() {
       ),
     },
   ];
-  //bg-inkLightBlack
   return (
     <section
-      ref={sectionRef}
-      className="min-h-[calc(100dvh-4rem)] w-full flex flex-col overflow-hidden relative bg-gradient-to-b from-[inkBlack] via-deepSpaceBlue to-[inkBlack]"
+      id="skills"
+      className="min-h-[calc(100dvh-79px)] w-full flex flex-col overflow-hidden relative z-10 bg-inkBlack"
     >
-      <div className="mt-auto mb-auto w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* ── Background ───────────────────────────────────────────── */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        {/* Animated grid */}
+        <div style={{
+          position: "absolute", inset: 0,
+          backgroundImage:
+            "linear-gradient(rgba(75,115,255,0.06) 1px, transparent 1px)," +
+            "linear-gradient(90deg, rgba(75,115,255,0.06) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+          maskImage:
+            "radial-gradient(ellipse 90% 75% at 50% 50%, black 10%, transparent 80%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 90% 75% at 50% 50%, black 10%, transparent 80%)",
+          animation: "grid-drift 18s linear infinite",
+        }} />
+        {/* Centre glow */}
+        <div style={{
+          position: "absolute", inset: 0,
+          background:
+            "radial-gradient(ellipse 70% 55% at 50% 50%, rgba(75,115,255,0.08) 0%, transparent 70%)",
+        }} />
+      </div>
+
+      <div ref={contentRef} className="skills-content relative z-10 mt-auto mb-auto w-full mx-auto max-w-7xl px-6 sm:px-8 lg:pl-16 lg:pr-8 py-6 lg:py-4">
         <h1
-          ref={headingRef}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-left pt-10"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-left pt-8 lg:pt-6"
         >
           My{" "}
           <span className="text-brightBlue font-extrabold italic">Skills</span>
         </h1>
 
         <p
-          ref={subtitleRef}
           className="text-base sm:text-lg md:text-xl mt-2 text-left"
         >
           Core technologies and tools I use to design & build modern web
@@ -664,34 +602,36 @@ export default function MySkillsSection() {
 
         {/* Grid */}
         <div
-          ref={gridRef}
           className="
-            mt-10
+            skills-grid
+            mt-8 lg:mt-6
             w-full
             grid
             grid-cols-3
             sm:grid-cols-4
-            md:grid-cols-6
-            gap-4
+            md:grid-cols-5
+            lg:grid-cols-6
+            gap-x-4 gap-y-4 lg:gap-y-3
             place-items-center
-            pb-14
+            pb-10 lg:pb-6
           "
         >
           {skills.map((skill, index) => (
             <div
               key={index}
               className="skill-card flex flex-col items-center justify-center text-center cursor-default"
+              style={{ '--card-delay': `${0.15 + index * 0.04}s` }}
             >
-              <div className="skill-icon w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 flex items-center justify-center">
+              <div className="skill-icon w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 2xl:w-14 2xl:h-14 flex items-center justify-center">
                 {skill.icon}
               </div>
-              <p className="text-base sm:text-lg md:text-xl mt-1">
+              <p className="text-base sm:text-lg lg:text-lg 2xl:text-xl mt-1">
                 {skill.name}
               </p>
             </div>
           ))}
         </div>
-      </div>
+      </div>   {/* end content wrapper */}
     </section>
   );
 }

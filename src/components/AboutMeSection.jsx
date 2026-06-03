@@ -106,8 +106,15 @@ export default function AboutMeSection() {
           pin: true,
           scrub: 1,
           anticipatePin: 1,
+          fastScrollEnd: 3000,
           invalidateOnRefresh: true,
-          //once: false,
+          // Force the timeline to its boundary the instant the pin releases.
+          // Without this, the scrub lag leaves letters mid-scatter / Section 2
+          // half-revealed as the section scrolls away, so it visually overlaps
+          // the next section before "catching up". Snapping to the boundary on
+          // leave makes the hand-off to the next section clean.
+          onLeave: () => tl.progress(1),
+          onLeaveBack: () => tl.progress(0),
         },
       });
 
@@ -288,16 +295,16 @@ export default function AboutMeSection() {
     },
     { scope: sectionRef }
   );
-  // bg-inkDarkLightBlack
   return (
     <section
+      id="about"
       ref={sectionRef}
-      className="min-h-[calc(100dvh-4rem)] flex items-center justify-center px-4 sm:px-6 relative z-10 overflow-hidden bg-gradient-to-b from-[inkBlack] via-deepSpaceBlue to-[inkBlack]"
+      className="min-h-[calc(100dvh-79px)] flex items-center justify-center px-4 sm:px-6 relative z-10 overflow-hidden bg-inkBlack"
     >
       {/* SECTION 1 — Title page */}
       <div
         ref={titleRef}
-        className="aboutMe-titlePg w-full max-w-6xl absolute inset-0 flex flex-col justify-center mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 "
+        className="aboutMe-titlePg w-full max-w-6xl absolute inset-0 flex flex-col justify-center mx-auto max-w-7xl px-8 sm:px-10 lg:pl-16 lg:pr-8 xl:pl-24 2xl:pl-32"
       >
         <SplitWord
           word="About"
@@ -319,49 +326,94 @@ export default function AboutMeSection() {
       {/* SECTION 2 — Full content */}
       <div
         ref={contentRef}
-        className="aboutMe-content w-full h-full flex items-center justify-center mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+        className="aboutMe-content w-full h-full flex items-center justify-center mx-auto max-w-7xl px-4 sm:px-6 lg:pl-16 lg:pr-8 xl:pl-24 2xl:pl-32"
         style={{ visibility: "hidden" }}
       >
-        <div className="w-full max-w-6xl flex flex-col sm:flex-col lg:flex-row items-center justify-center gap-2">
+        <div className="w-full flex flex-col sm:flex-col lg:flex-row items-center justify-center gap-8 md:gap-10 lg:gap-10">
           {/* ILLUSTRATION */}
           <div
-            className="w-full flex justify-center items-center relative
-                h-[38vh] xs:h-[40vh] sm:h-[45vh] md:h-[48vh]
-                max-w-[400px] sm:max-w-md md:max-w-xl mx-auto mt-2"
+            className="aboutMe-illustration flex justify-center items-center relative
+                w-full h-[28vh] sm:h-[30vh] md:h-[32vh]
+                max-w-[260px] sm:max-w-xs md:max-w-sm
+                lg:w-[44%] lg:h-auto lg:max-w-xl
+                mx-auto mt-2 mb-8 md:mb-10 lg:mt-0 lg:mb-0 lg:flex-shrink-0"
           >
-            <SvgAboutMe className="w-full h-full object-contain relative z-10" />
+            <SvgAboutMe className="w-full h-auto object-contain relative z-10" />
           </div>
 
-          {/* TEXT */}
-          <div className="flex-1 text-center md:text-left md:mt-10">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-left">
-              About
-              <span className="text-brightBlue font-extrabold italic"> Me</span>
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl pt-2 pb-10 max-w-xl mx-auto text-left">
-              I'm Seun. I studied Creative Tech and am now pursuing a career in
-              Frontend Development. My background in design and interactive
-              technologies gives me a creative edge in coding, allowing me to
-              build engaging, user-focused web applications using JavaScript,
-              React, React Native, and C#. I'm passionate about combining design
-              and technical skills to create seamless digital experiences.
-            </p>
+          {/* TEXT — glass card */}
+          <div className="flex-1 w-full lg:max-w-lg xl:max-w-xl">
+            <div
+              className="relative rounded-2xl overflow-hidden p-4 sm:p-5 md:p-4"
+              style={{
+                background: "linear-gradient(135deg, rgba(0,37,62,0.65) 0%, rgba(0,17,28,0.75) 100%)",
+                border: "1px solid rgba(75,115,255,0.18)",
+                backdropFilter: "blur(18px)",
+              }}
+            >
+              {/* Top gradient accent line */}
+              <div style={{
+                position: "absolute", top: 0, left: 0, right: 0, height: "1px",
+                background: "linear-gradient(90deg, transparent 0%, rgba(75,115,255,0.9) 50%, transparent 100%)",
+              }} />
+
+              {/* Corner glow */}
+              <div style={{
+                position: "absolute", top: 0, right: 0,
+                width: "140px", height: "140px",
+                background: "radial-gradient(circle at 100% 0%, rgba(75,115,255,0.18) 0%, transparent 70%)",
+                pointerEvents: "none",
+              }} />
+
+              {/* Left accent bar */}
+              <div style={{
+                position: "absolute", top: "20%", left: 0, bottom: "20%", width: "2px",
+                background: "linear-gradient(180deg, transparent 0%, rgba(75,115,255,0.7) 50%, transparent 100%)",
+                borderRadius: "1px",
+              }} />
+
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-left">
+                About
+                <span className="text-brightBlue font-extrabold italic"> Me</span>
+              </h1>
+              <p className="text-sm sm:text-base md:text-base pt-3 pb-2 text-left text-white/80 leading-relaxed">
+                I'm Seun. I studied Creative Tech and am now pursuing a career in
+                Frontend Development. My background in design and interactive
+                technologies gives me a creative edge in coding, allowing me to
+                build engaging, user-focused web applications using JavaScript,
+                React, React Native, and C#. I'm passionate about combining design
+                and technical skills to create seamless digital experiences.
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* ── Decorative SVGs — refs on wrapper divs, not SVG components ── */}
+      {/* ── Background treatment + Decorative SVGs ── */}
       <div className="pointer-events-none absolute inset-0 -z-1 overflow-hidden">
+
+        {/* Drifting grid */}
+        <div style={{
+          position: "absolute", inset: 0,
+          backgroundImage:
+            "linear-gradient(rgba(75,115,255,0.07) 1px, transparent 1px)," +
+            "linear-gradient(90deg, rgba(75,115,255,0.07) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+          maskImage:       "radial-gradient(ellipse 90% 80% at 35% 50%, black 10%, transparent 72%)",
+          WebkitMaskImage: "radial-gradient(ellipse 90% 80% at 35% 50%, black 10%, transparent 72%)",
+          animation: "grid-drift 15s linear infinite",
+        }} />
+
         {/* Left */}
         <div
           ref={svgGridTpL}
-          className="absolute w-16 h-16 top-[12vh] sm:top-[22vh] md:top-[18vh] lg:top-[4vh] xl:top-[12vh] left-[4vw] sm:left-[1vw] lg:left-[4vw] xl:left-[12vw]"
+          className="absolute w-16 h-16 top-[12vh] sm:top-[22vh] md:top-[18vh] lg:top-[4vh] xl:top-[12vh] left-[4vw] sm:left-[1vw] lg:left-[7vw] xl:left-[12vw] 2xl:left-[14vw]"
         >
           <SvgGridSquareTpL className="w-full h-full" />
         </div>
         <div
           ref={svgCheckerd}
-          className="absolute w-16 h-16 transform scale-x-[-1] bottom-[2vh] left-[2vw]"
+          className="absolute w-16 h-16 transform scale-x-[-1] bottom-[8vh] left-[6vw] lg:left-[9vw] xl:left-[11vw] 2xl:left-[13vw]"
         >
           <SvgCheckerdGridTpBtm className="w-full h-full" />
         </div>
@@ -387,7 +439,7 @@ export default function AboutMeSection() {
         </div>
         <div
           ref={svgGridBtmR}
-          className="absolute w-16 h-16 bottom-[2vh] md:bottom-[4vh] lg:bottom-[8vh] right-[2vw]"
+          className="absolute w-16 h-16 bottom-[2vh] sm:bottom-[6vh] md:bottom-[4vh] lg:bottom-[8vh] right-[2vw]"
         >
           <SvgGridSquareBtmR className="w-full h-full" />
         </div>
