@@ -276,7 +276,10 @@ export default function ProjectsSection() {
                     <div
                       className="relative select-none"
                       style={{
-                        width: "100%",
+                        // Fill the column width, but never let the 16/9 frame grow
+                        // taller than the section's available height (which would be
+                        // clipped on short viewports). Cap width by height * 16/9.
+                        width: "min(100%, calc((100svh - 150px) * 16 / 9))",
                         filter: "drop-shadow(0 24px 48px rgba(0,0,0,0.75))",
                       }}
                     >
