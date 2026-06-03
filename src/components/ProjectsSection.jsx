@@ -261,18 +261,18 @@ export default function ProjectsSection() {
             // style={{ backgroundColor: project.bg }}
           >
             {project.isProject && (
-              <span className="absolute top-4 right-12 font-display text-[10px] sm:text-xs tracking-[0.3em] text-muted-foreground/60 bg-inkLightBlack backdrop-blur-sm px-3 py-1.5 rounded-sm z-20">
+              <span className="absolute top-4 right-12 font-display text-[10px] sm:text-xs tracking-[0.3em] text-muted-foreground/60 bg-inkDarkLightBlack backdrop-blur-sm px-3 py-1.5 rounded-sm z-20">
                 {project.label}
               </span>
             )}
             {project.isProject ? (
               <div
-                className="projectContent-container w-full h-full flex flex-col justify-center lg:justify-start lg:flex-row"
+                className="projectContent-container w-full h-full flex flex-col lg:flex-row"
                 // style={{ border: "2px solid red" }}
               >
 
                 {/* IMAGE HALF — overflow-hidden clips the slide-up */}
-                <div className="project-imgPlaceholder flex-none lg:flex-1 lg:min-h-0 flex justify-center items-center overflow-hidden bg-inkLightBlack px-8 py-4 lg:py-6 lg:pr-5 lg:pl-[68px]">
+                <div className="project-imgPlaceholder flex-none lg:flex-1 lg:min-h-0 flex justify-center items-center overflow-hidden bg-inkLightBlack px-8 pt-16 pb-5 lg:py-6 lg:pr-5 lg:pl-[68px]">
                   {/* Screen mockup — js-project-img kept for GSAP targeting */}
                   <div className="js-project-img project-imgContent relative flex items-center justify-center w-full h-full">
                     <div
@@ -318,7 +318,7 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* INFO HALF — overflow-hidden clips the slide-down -- bg-inkDarkLightBlack */}
-                <div className="project-info flex-none lg:flex-1 lg:min-h-0 flex flex-col justify-center px-6 sm:px-8 md:px-10 py-2 md:py-8 overflow-hidden">
+                <div className="project-info flex-1 min-h-0 flex flex-col justify-start lg:justify-center bg-inkBlack px-6 sm:px-8 md:px-10 pt-5 pb-2 md:py-8 overflow-hidden">
                   <div className="js-project-info">
                     <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-left">
                       {project.title}
