@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -28,28 +28,6 @@ const HERO_SCROLL_DISTANCE = 600;
 export default function ProjectsSection() {
   const sectionRef = useRef(null);
   const wrapperRef = useRef(null);
-  const videoRef = useRef(null);
-
-  // Pause the demo video while it's off-screen, resume (not restart) when
-  // it scrolls back into view — saves CPU/GPU + battery without a jarring reset.
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      },
-      { threshold: 0.25 }
-    );
-
-    observer.observe(video);
-    return () => observer.disconnect();
-  }, []);
 
   // Hero refs
   const heroTitleRef        = useRef(null);
@@ -306,24 +284,11 @@ export default function ProjectsSection() {
                       <div style={{
                         background: "#18181b",
                         border: "2px solid #3f3f46",
-                        borderRadius: 12,
-                        padding: "12px",
+                        borderRadius: 10,
+                        padding: "8px",
                         boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06)",
                         position: "relative",
                       }}>
-                        {/* Camera dot */}
-                        <div style={{
-                          position: "absolute",
-                          top: 6,
-                          left: "50%",
-                          transform: "translateX(-50%)",
-                          width: 6,
-                          height: 6,
-                          borderRadius: "50%",
-                          background: "#2e2e32",
-                          border: "1.5px solid #52525b",
-                        }} />
-
                         {/* Screen */}
                         <div style={{
                           borderRadius: 6,
@@ -331,14 +296,12 @@ export default function ProjectsSection() {
                           aspectRatio: "16/9",
                           background: "#000",
                         }}>
-                          <video
-                            ref={videoRef}
-                            src="/nexahub.mp4"
-                            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
+                          <iframe
+                            src="https://www.youtube.com/embed/vAUKPq1KS8E?autoplay=1&mute=1&loop=1&playlist=vAUKPq1KS8E&controls=0&modestbranding=1&rel=0&playsinline=1"
+                            title={project.title}
+                            style={{ width: "100%", height: "100%", border: 0, display: "block" }}
+                            allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                            allowFullScreen
                           />
                         </div>
                       </div>
