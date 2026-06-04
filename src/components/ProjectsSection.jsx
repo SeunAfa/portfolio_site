@@ -15,7 +15,7 @@ const projects = [
     label: "01",
     title: "NexaHub — Maintenance CRM",
     description:
-      "Front-end maintenance CRM with three surfaces (agent helpdesk, customer portal, public case tracker), a case-to-work-order lifecycle, AI-assisted intake, live phone-call simulation, and templated status emails. Designed for real helpdesk workflows — from first call through to engineer assignment, parts delays, and customer-facing status updates.",
+      "Front-end maintenance CRM with three surfaces — agent helpdesk, customer portal, and public case tracker — featuring a case-to-work-order lifecycle, AI-assisted intake, live phone-call simulation, and templated status emails.",
     isProject: true,
     tags: ["React", "JavaScript", "Tailwind CSS", "Vite", "React Router", "Headless UI", "Recharts", "Context API", "Responsive Design"],
     link: "https://seunafa.github.io/maintenance_crm_app/",
