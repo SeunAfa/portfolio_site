@@ -42,8 +42,8 @@ export default function NavBar() {
 
   return (
     <>
-      {/* ── Desktop nav ─────────────────────────────────────────────────── */}
-      <nav style={{
+      {/* ── Nav ─────────────────────────────────────────────────────────── */}
+      <nav className="px-5 lg:px-12" style={{
         position: "fixed",
         top: 0,
         left: 0,
@@ -54,8 +54,6 @@ export default function NavBar() {
         alignItems: "center",
         justifyContent: "space-between",
         paddingTop: "15px",
-        paddingLeft: "3rem",
-        paddingRight: "3rem",
         paddingBottom: 0,
         zIndex: 50,
         backdropFilter: "blur(12px)",
@@ -119,21 +117,21 @@ export default function NavBar() {
             );
           })}
         </div>
-      </nav>
 
-      {/* ── Mobile hamburger button ──────────────────────────────────────── */}
-      <button
-        onClick={() => setMobileOpen((o) => !o)}
-        className="lg:hidden"
-        style={{
-          position: "fixed", top: "31px", right: "20px",
-          zIndex: 60, background: "none", border: "none",
-          color: "rgba(255,255,255,0.7)", cursor: "pointer", padding: "8px",
-        }}
-        aria-label="Toggle menu"
-      >
-        {mobileOpen ? <XMarkIcon style={{ width: "24px", height: "24px" }} /> : <Bars3Icon style={{ width: "24px", height: "24px" }} />}
-      </button>
+        {/* Mobile hamburger — inside the nav so flex aligns it with the logo */}
+        <button
+          onClick={() => setMobileOpen((o) => !o)}
+          className="lg:hidden"
+          style={{
+            display: "flex", alignItems: "center", justifyContent: "center",
+            background: "none", border: "none",
+            color: "rgba(255,255,255,0.7)", cursor: "pointer", padding: 0,
+          }}
+          aria-label="Toggle menu"
+        >
+          {mobileOpen ? <XMarkIcon style={{ width: "26px", height: "26px" }} /> : <Bars3Icon style={{ width: "26px", height: "26px" }} />}
+        </button>
+      </nav>
 
       {/* ── Mobile backdrop ──────────────────────────────────────────────── */}
       {mobileOpen && (

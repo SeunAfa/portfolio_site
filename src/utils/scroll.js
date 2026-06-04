@@ -29,13 +29,13 @@ export function smoothScrollTo(href) {
         // and back. Land exactly on the hero-intro snap point (600px into
         // the pin) and let the scrub fade the hero in naturally.
         window.__suppressProjectsSnap = true;
-        window.scrollTo({ top: st.start + 600, behavior: "smooth" });
+        window.scrollTo({ top: st.start + 1100, behavior: "smooth" });
         clearTimeout(window.__projectsSnapTimer);
         window.__projectsSnapTimer = setTimeout(() => {
           window.__suppressProjectsSnap = false;
         }, 1200);
       } else {
-        window.scrollTo({ top: pinStart + 600, behavior: "smooth" });
+        window.scrollTo({ top: pinStart + 1100, behavior: "smooth" });
       }
     }
   } else {

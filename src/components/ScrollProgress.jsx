@@ -27,27 +27,6 @@ export default function ScrollProgress() {
           boxShadow: "0 0 8px rgba(75,115,255,0.5)",
         }}
       />
-
-      {/* Vertical scrollbar track — inside the right frame border */}
-      <div
-        className="fixed right-[6px] z-[998] pointer-events-none"
-        style={{
-          top: "24px",
-          bottom: "24px",
-          width: "2px",
-          background: "rgba(255,255,255,0.06)",
-          borderRadius: "999px",
-        }}
-      >
-        <div
-          style={{
-            height: `${pct}%`,
-            background: "rgba(75,115,255,0.55)",
-            borderRadius: "999px",
-            transition: "height 80ms linear",
-          }}
-        />
-      </div>
     </>
   );
 }

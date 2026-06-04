@@ -9,6 +9,7 @@ import ProjectsSection from "./components/ProjectsSection";
 import ContactMeSection from "./components/ContactMeSection";
 import SpotlightFollower from "./components/SpotlightFollower";
 import ScrollProgress from "./components/ScrollProgress";
+import Preloader from "./components/Preloader";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,9 +22,12 @@ function App() {
 
   return (
     <>
-      {/* Fixed viewport border frame */}
+      {/* Loading page — dismisses on full load, then triggers the hero intro */}
+      <Preloader />
+
+      {/* Fixed viewport border frame — desktop only (removed on mobile) */}
       <div
-        className="fixed inset-0 pointer-events-none z-[999]"
+        className="hidden md:block fixed inset-0 pointer-events-none z-[999]"
         style={{ border: "15px solid #00253e" }}
       />
 

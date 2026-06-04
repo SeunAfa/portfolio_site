@@ -22,8 +22,10 @@ const projects = [
   },
 ];
 
-// Pixels of scroll dedicated to the hero fade-in before horizontal pan begins
-const HERO_SCROLL_DISTANCE = 600;
+// Pixels of scroll dedicated to the hero fade-in before horizontal pan begins.
+// Higher = more scroll buffer around the intro, so scrolling back to it isn't
+// too abrupt.
+const HERO_SCROLL_DISTANCE = 1100;
 
 export default function ProjectsSection() {
   const sectionRef = useRef(null);
@@ -205,7 +207,11 @@ export default function ProjectsSection() {
           });
         },
         snap: {
-          snapTo: (value) => {
+          // Directional snap: once the user has scrolled past a small
+          // percentage toward the next/previous panel, commit and snap straight
+          // into place (rather than only snapping to whichever panel is nearest
+          // once scrolling stops).
+          snapTo: (value, self) => {
             // While a nav-bar jump is in flight, don't snap — returning the
             // current value is a no-op, so the programmatic scroll lands on
             // the intro without the snap dragging it into the panel and back.
@@ -214,20 +220,36 @@ export default function ProjectsSection() {
             if (value >= snapPoints[snapPoints.length - 1]) return value;
             // Before the first snap point the user is leaving back — don't re-anchor
             if (value <= snapPoints[0]) return value;
-            let closest = snapPoints[0];
-            let minDist = Math.abs(value - closest);
-            for (const point of snapPoints) {
-              const dist = Math.abs(value - point);
-              if (dist < minDist) {
-                minDist = dist;
-                closest = point;
+
+            // Find the two snap points bracketing the current progress.
+            let lower = snapPoints[0];
+            let upper = snapPoints[snapPoints.length - 1];
+            for (let i = 0; i < snapPoints.length - 1; i++) {
+              if (value >= snapPoints[i] && value <= snapPoints[i + 1]) {
+                lower = snapPoints[i];
+                upper = snapPoints[i + 1];
+                break;
               }
             }
-            return closest;
+
+            const range = upper - lower;
+            const frac = range ? (value - lower) / range : 0;
+            // Forward: advance to the next panel after ~20% of scroll (eager).
+            // Backward: hold the current panel until ~75% scrolled back (sticky),
+            // so scrolling UP from Contact snaps onto the LAST project instead of
+            // flying past it to the intro.
+            const FWD_THRESHOLD  = 0.2;
+            const BACK_THRESHOLD = 0.25;
+            const dir = self && self.direction ? self.direction : 0;
+
+            if (dir > 0) return frac > FWD_THRESHOLD ? upper : lower;       // scrolling forward
+            if (dir < 0) return frac < BACK_THRESHOLD ? lower : upper;      // scrolling back
+            return frac < 0.5 ? lower : upper;                             // no direction → nearest
           },
-          duration: { min: 0.8, max: 1.4 },
-          delay: 0.15,
-          ease: "power1.out",
+          directional: true,
+          duration: { min: 0.4, max: 0.9 },
+          delay: 0.08,
+          ease: "power2.out",
           // onComplete re-resolves after snap settles to guarantee final state
           onComplete: () => {
             const st = ScrollTrigger.getById("projects-unified");
@@ -276,7 +298,7 @@ export default function ProjectsSection() {
                   {/* Screen mockup — js-project-img kept for GSAP targeting */}
                   <div className="js-project-img project-imgContent relative flex items-center justify-center w-full h-full">
                     <div
-                      className="relative select-none max-w-[78%] sm:max-w-[60%] lg:max-w-full mx-auto"
+                      className="relative select-none max-w-full sm:max-w-[80%] lg:max-w-full mx-auto"
                       style={{
                         // Fill the column width, but never let the 16/9 frame grow
                         // taller than the section's available height (which would be

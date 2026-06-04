@@ -74,21 +74,38 @@ export default function HeroSection() {
   const isLarge = useMediaQuery({ query: "(min-width: 900px)" });
   const sectionRef = useRef(null);
 
-  // ── One-time mount animation — fires once on page load ────────────────
+  // ── Intro slide-up — runs only after the loading page finishes ────────
   useEffect(() => {
+    let cleanupEvent = () => {};
     const ctx = gsap.context(() => {
       const elements = gsap.utils.toArray("[data-ha]", sectionRef.current);
       if (!elements.length) return;
-      gsap.from(elements, {
-        y: 28,
-        autoAlpha: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-        delay: 0.15,
-      });
+
+      // Hidden + shifted down until the reveal fires.
+      gsap.set(elements, { y: 28, autoAlpha: 0 });
+
+      const reveal = () => {
+        gsap.to(elements, {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out",
+        });
+      };
+
+      if (window.__preloaderDone) {
+        reveal();
+      } else {
+        window.addEventListener("preloader:done", reveal, { once: true });
+        cleanupEvent = () => window.removeEventListener("preloader:done", reveal);
+      }
     }, sectionRef);
-    return () => ctx.revert();
+
+    return () => {
+      cleanupEvent();
+      ctx.revert();
+    };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const MobileHero = (
