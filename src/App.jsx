@@ -21,14 +21,10 @@ function App() {
 
   return (
     <>
-      {/* Fixed viewport border frame.
-          Height is 100svh (small viewport height) rather than inset-0 so the
-          bottom border stays fully visible above the mobile browser toolbar and
-          the border stays even. When the toolbar retracts, the frame simply
-          doesn't reach the very bottom (leaves a gap) instead of resizing. */}
+      {/* Fixed viewport border frame */}
       <div
-        className="fixed top-0 inset-x-0 pointer-events-none z-[999]"
-        style={{ height: "100svh", border: "15px solid #00253e" }}
+        className="fixed inset-0 pointer-events-none z-[999]"
+        style={{ border: "15px solid #00253e" }}
       />
 
       {/* GitHub icon — top left (desktop only) */}
