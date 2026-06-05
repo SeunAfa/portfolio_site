@@ -86,7 +86,7 @@ export default function ContactMeSection() {
     <section
       id="contact"
       ref={sectionRef}
-      className="w-full min-h-0 md:min-h-[calc(100svh-79px)] flex items-center justify-center overflow-hidden relative z-10 bg-inkBlack px-4 sm:px-8 py-14 sm:py-16"
+      className="w-full min-h-[calc(100svh-79px)] flex items-center justify-center overflow-hidden relative z-10 bg-inkBlack px-4 sm:px-8 py-14 sm:py-16"
     >
       {/* Background grid */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">

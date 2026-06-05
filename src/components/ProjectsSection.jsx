@@ -63,55 +63,55 @@ export default function ProjectsSection() {
       gsap.set(projectImgs, { opacity: 0, y: 50 });
       gsap.set(projectInfos, { opacity: 0, y: -50 });
 
-      // ── Timeline weights ───────────────────────────────────────────────────
-
-      const getScrollAmount = () =>
-        -(panels[0].getBoundingClientRect().width * (panels.length - 1));
+      // ── Timeline (durations in px-units: 1px of scroll ≈ 1 unit) ───────────
+      // DWELL gives each panel its own stretch of scroll where it's held fully in
+      // view (like the About section's staged scroll), so a fast scroll still
+      // shows every slide instead of blowing straight through the pan.
+      const DWELL = 600;                              // px each panel is held
+      const numPans   = panels.length - 1;            // panel transitions
+      const numPanels = panels.length;                // intro + project panels
+      const PW = panels[0].getBoundingClientRect().width; // panel width (build-time)
 
       const totalScrollLength = () =>
-        HERO_SCROLL_DISTANCE + Math.abs(getScrollAmount());
+        HERO_SCROLL_DISTANCE +
+        numPans * panels[0].getBoundingClientRect().width +
+        numPanels * DWELL;
 
-      const heroWeight = HERO_SCROLL_DISTANCE / totalScrollLength();
-      const panWeight = 1 - heroWeight;
-      // Each project panel gets an equal slice of the pan portion
-      const panelWeight = panWeight / (projects.length - 1);
-
-      // ── Master timeline (scrub only — no entry animations here) ───────────
+      const total  = HERO_SCROLL_DISTANCE + numPans * PW + numPanels * DWELL;
+      const heroW  = HERO_SCROLL_DISTANCE / total;     // hero fade-in fraction
+      const dwellW = DWELL / total;                    // per-panel hold fraction
+      const panW1  = PW / total;                       // per-transition pan fraction
 
       const masterTl = gsap.timeline();
 
-      // Phase 1 — hero fade
-      // No stagger: fixed stagger values extend past heroWeight on wider screens,
-      // leaving SVGs mid-animation when the snap point is reached.
-      // All three elements animate together and finish at heroWeight * 0.85.
+      // Phase 1 — hero/intro fade-in (no stagger; finishes within the hero region)
       masterTl.to(
         [heroTitleRef.current, heroDescRef.current, heroSvgsRef.current,
          heroOpenBracketRef.current, heroCloseBracketRef.current],
-        {
-          opacity: 1,
-          y: 0,
-          ease: "power2.out",
-          duration: heroWeight * 0.85,
-          stagger: 0,
-        },
+        { opacity: 1, y: 0, ease: "power2.out", duration: heroW * 0.85, stagger: 0 },
         0
       );
 
-      // Phase 2 — horizontal pan
-      masterTl.to(
-        wrapper,
-        { x: getScrollAmount, ease: "none", duration: panWeight },
-        heroWeight
-      );
+      // Phase 2 — for each panel: HOLD it, then PAN to the next.
+      let pos = heroW;
+      masterTl.to({}, { duration: dwellW }, pos); // hold the intro
+      pos += dwellW;
+      for (let i = 1; i <= numPans; i++) {
+        masterTl.to(
+          wrapper,
+          { x: () => -(panels[0].getBoundingClientRect().width * i), ease: "none", duration: panW1 },
+          pos
+        );
+        pos += panW1;
+        masterTl.to({}, { duration: dwellW }, pos); // hold this panel
+        pos += dwellW;
+      }
 
-      // ── Snap points (dynamic — works for any number of project panels) ───────
-      const numProjectPanels = projects.filter(p => p.isProject).length;
+      // ── Snap points: 0, then each panel's fully-shown position ─────────────
+      // index 1 = intro, index 2 = first project, … (resolveActivePanel uses -2)
       const snapPoints = [
         0,
-        heroWeight,
-        ...Array.from({ length: numProjectPanels }, (_, i) =>
-          heroWeight + (i + 1) * panelWeight
-        ),
+        ...Array.from({ length: numPanels }, (_, i) => heroW + i * (panW1 + dwellW)),
       ];
 
       // ── Entry / exit runners (free-running, not scrubbed) ─────────────────

@@ -55,7 +55,7 @@ export default function NavBar() {
         justifyContent: "space-between",
         paddingTop: "15px",
         paddingBottom: 0,
-        zIndex: 50,
+        zIndex: 100,
         backdropFilter: "blur(12px)",
         borderBottom: "1px solid rgba(255,255,255,0.1)",
         backgroundColor: "#00111c",
