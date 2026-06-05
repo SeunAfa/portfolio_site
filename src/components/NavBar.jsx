@@ -43,10 +43,10 @@ export default function NavBar() {
   return (
     <>
       {/* ── Desktop nav ─────────────────────────────────────────────────── */}
-      {/* px-5 (20px) for mobile AND tablet (matches the hamburger's icon at 20px);
-          only the desktop (≥1200px, above tablet but ≤ the 1266 target) gets the
-          wider 48px original spacing. */}
-      <nav className="px-5 min-[1200px]:px-12" style={{
+      {/* px-8 (32px) for mobile + tablet — enough to clear the frame border and
+          not crowd the edge (the hamburger's icon also sits at 32px to match);
+          desktop (≥1200px) gets the wider 48px original spacing. */}
+      <nav className="px-8 min-[1200px]:px-12" style={{
         position: "fixed",
         top: 0,
         left: 0,
@@ -127,9 +127,9 @@ export default function NavBar() {
         onClick={() => setMobileOpen((o) => !o)}
         className="lg:hidden"
         style={{
-          // right:12 + 8px padding puts the icon 20px from the edge, matching
-          // the logo's 20px left inset (px-5) so left/right padding is even.
-          position: "fixed", top: "31px", right: "12px",
+          // right:24 + 8px padding puts the icon 32px from the edge, matching
+          // the logo's 32px left inset (px-8) so left/right padding is even.
+          position: "fixed", top: "31px", right: "24px",
           zIndex: 60, background: "none", border: "none",
           color: "rgba(255,255,255,0.7)", cursor: "pointer", padding: "8px",
         }}
