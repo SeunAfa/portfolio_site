@@ -42,7 +42,9 @@ export default function NavBar() {
 
   return (
     <>
-      {/* ── Nav ─────────────────────────────────────────────────────────── */}
+      {/* ── Desktop nav ─────────────────────────────────────────────────── */}
+      {/* px-5 (20px) on mobile matches the hamburger's right:20px → symmetric;
+          px-12 (3rem) on desktop keeps the original spacing. */}
       <nav className="px-5 lg:px-12" style={{
         position: "fixed",
         top: 0,
@@ -55,11 +57,8 @@ export default function NavBar() {
         justifyContent: "space-between",
         paddingTop: "15px",
         paddingBottom: 0,
-        zIndex: 100,
-        // NOTE: no backdrop-filter — on mobile it breaks a fixed element's
-        // compositing over the transformed/pinned sections (About/Projects),
-        // making the nav appear to detach. The background is fully opaque so the
-        // blur had no visible effect anyway.
+        zIndex: 50,
+        backdropFilter: "blur(12px)",
         borderBottom: "1px solid rgba(255,255,255,0.1)",
         backgroundColor: "#00111c",
       }}>
@@ -120,21 +119,21 @@ export default function NavBar() {
             );
           })}
         </div>
-
-        {/* Mobile hamburger — inside the nav so flex aligns it with the logo */}
-        <button
-          onClick={() => setMobileOpen((o) => !o)}
-          className="lg:hidden"
-          style={{
-            display: "flex", alignItems: "center", justifyContent: "center",
-            background: "none", border: "none",
-            color: "rgba(255,255,255,0.7)", cursor: "pointer", padding: 0,
-          }}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <XMarkIcon style={{ width: "26px", height: "26px" }} /> : <Bars3Icon style={{ width: "26px", height: "26px" }} />}
-        </button>
       </nav>
+
+      {/* ── Mobile hamburger button ──────────────────────────────────────── */}
+      <button
+        onClick={() => setMobileOpen((o) => !o)}
+        className="lg:hidden"
+        style={{
+          position: "fixed", top: "31px", right: "20px",
+          zIndex: 60, background: "none", border: "none",
+          color: "rgba(255,255,255,0.7)", cursor: "pointer", padding: "8px",
+        }}
+        aria-label="Toggle menu"
+      >
+        {mobileOpen ? <XMarkIcon style={{ width: "24px", height: "24px" }} /> : <Bars3Icon style={{ width: "24px", height: "24px" }} />}
+      </button>
 
       {/* ── Mobile backdrop ──────────────────────────────────────────────── */}
       {mobileOpen && (
