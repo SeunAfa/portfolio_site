@@ -56,7 +56,10 @@ export default function NavBar() {
         paddingTop: "15px",
         paddingBottom: 0,
         zIndex: 100,
-        backdropFilter: "blur(12px)",
+        // NOTE: no backdrop-filter — on mobile it breaks a fixed element's
+        // compositing over the transformed/pinned sections (About/Projects),
+        // making the nav appear to detach. The background is fully opaque so the
+        // blur had no visible effect anyway.
         borderBottom: "1px solid rgba(255,255,255,0.1)",
         backgroundColor: "#00111c",
       }}>
