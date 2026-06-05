@@ -43,9 +43,10 @@ export default function NavBar() {
   return (
     <>
       {/* ── Desktop nav ─────────────────────────────────────────────────── */}
-      {/* px-5 (20px) on mobile matches the hamburger's right:20px → symmetric;
-          px-12 (3rem) on desktop keeps the original spacing. */}
-      <nav className="px-5 lg:px-12" style={{
+      {/* px-5 (20px) for mobile AND tablet (matches the hamburger's icon at 20px);
+          only the desktop (≥1200px, above tablet but ≤ the 1266 target) gets the
+          wider 48px original spacing. */}
+      <nav className="px-5 min-[1200px]:px-12" style={{
         position: "fixed",
         top: 0,
         left: 0,
