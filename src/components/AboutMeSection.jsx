@@ -104,6 +104,10 @@ export default function AboutMeSection() {
           start: `top ${navHeight}px`,
           end: "+=300%",
           pin: true,
+          // Pin via position:fixed (not mobile's default transform). The transform
+          // pin creates a context that knocks the fixed navbar out of place on
+          // mobile during this section; "fixed" keeps the navbar stuck.
+          pinType: "fixed",
           scrub: 1,
           anticipatePin: 1,
           fastScrollEnd: 3000,

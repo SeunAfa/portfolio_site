@@ -172,6 +172,9 @@ export default function ProjectsSection() {
         start: pinStart,
         end: () => `+=${totalScrollLength()}`,
         pin: true,
+        // Pin via position:fixed (not mobile's default transform) so the fixed
+        // navbar stays put during this pinned section on mobile.
+        pinType: "fixed",
         // scrub:1 keeps the horizontal pan tracking close to the scroll position.
         // (Was 2 — the heavier lag meant that on reverse-scroll the pan trailed
         // far behind, so the onLeaveBack progress(0) reset showed as a visible
