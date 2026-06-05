@@ -126,7 +126,9 @@ export default function NavBar() {
         onClick={() => setMobileOpen((o) => !o)}
         className="lg:hidden"
         style={{
-          position: "fixed", top: "31px", right: "20px",
+          // right:12 + 8px padding puts the icon 20px from the edge, matching
+          // the logo's 20px left inset (px-5) so left/right padding is even.
+          position: "fixed", top: "31px", right: "12px",
           zIndex: 60, background: "none", border: "none",
           color: "rgba(255,255,255,0.7)", cursor: "pointer", padding: "8px",
         }}
