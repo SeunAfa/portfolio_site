@@ -340,18 +340,18 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* INFO HALF — overflow-hidden clips the slide-down -- bg-inkDarkLightBlack */}
-                <div className="project-info flex-1 min-h-0 flex flex-col justify-start lg:justify-center bg-inkBlack px-6 sm:px-8 md:px-10 pt-5 pb-2 md:py-8 overflow-hidden">
+                <div className="project-info flex-1 min-h-0 flex flex-col justify-start lg:justify-center bg-inkBlack px-6 sm:px-8 md:px-10 pt-5 pb-2 md:py-5 overflow-hidden">
                   <div className="js-project-info">
                     <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-left">
                       {project.title}
                     </h1>
 
-                    <p className="text-sm sm:text-base md:text-lg text-left mt-2 md:mt-4 leading-relaxed max-w-prose">
+                    <p className="text-sm sm:text-base md:text-lg text-left mt-2 md:mt-3 leading-relaxed max-w-prose">
                       {project.description}
                     </p>
 
                     {project.tags && project.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mt-4 md:mt-6">
+                      <div className="flex flex-wrap gap-2 mt-3 md:mt-4">
                         {project.tags.map((tag) => (
                           <span
                             key={tag}
@@ -363,7 +363,7 @@ export default function ProjectsSection() {
                       </div>
                     )}
 
-                    <div className="flex items-center gap-4 mt-6">
+                    <div className="flex items-center gap-4 mt-4 md:mt-5">
                       {project.link && (
                         <a
                           href={project.link}
