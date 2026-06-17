@@ -27,9 +27,9 @@ const projects = [
   {
     id: 3,
     label: "02",
-    title: "Yare — Luxury E-Commerce Platform",
+    title: "Yare — E-Commerce Platform",
     description:
-      "Luxury e-commerce platform for watches and jewelry built with Blazor WebAssembly. Features a customer storefront with filtering and checkout, plus an admin dashboard. Migrated from ASP.NET Core MVC to run entirely in the browser.",
+      "E-commerce platform for watches and jewelry built with Blazor WebAssembly — featuring a customer storefront with filtering, cart, and checkout, plus an admin dashboard for inventory management and analytics. Fully migrated from ASP.NET Core MVC to run entirely in the browser.",
     isProject: true,
     mediaUrl: YareMockup,
     mediaType: "image",
