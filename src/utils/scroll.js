@@ -1,10 +1,16 @@
+import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+gsap.registerPlugin(ScrollToPlugin);
 
 // Returns the gsap-pin-spacer wrapper if present, otherwise the element itself.
 export function getPinSpacer(el) {
-  return el.parentElement?.classList?.contains("gsap-pin-spacer")
-    ? el.parentElement
-    : el;
+  const parent = el.parentElement;
+  if (parent?.classList?.contains("gsap-pin-spacer") || parent?.classList?.contains("pin-spacer")) {
+    return parent;
+  }
+  return el;
 }
 
 export function smoothScrollTo(href) {
@@ -20,7 +26,23 @@ export function smoothScrollTo(href) {
 
     if (href === "#about") {
       const pastAbout = window.scrollY > pinEnd;
-      window.scrollTo({ top: pastAbout ? pinStart + pinRange * 0.67 : pinStart + window.innerHeight, behavior: "smooth" });
+      if (pastAbout) {
+        window.scrollTo({ top: pinStart + pinRange * 0.67, behavior: "smooth" });
+      } else {
+        // Jump instantly to pin start so the pin engages, then auto-advance
+        // scroll all the way through the intro/scatter to reveal the content.
+        // Use GSAP tween with 3.5s duration to let the intro play longer.
+        window.scrollTo({ top: pinStart });
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            gsap.to(window, {
+              scrollTo: { y: pinStart + pinRange * 0.85 },
+              duration: 3.5,
+              ease: "none"
+            });
+          });
+        });
+      }
     } else {
       const st = ScrollTrigger.getById("projects-unified");
       if (st) {

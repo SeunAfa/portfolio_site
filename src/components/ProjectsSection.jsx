@@ -2,6 +2,8 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import NexaHubMockup from "../assets/NexaHub_mockup.png";
+import YareMockup from "../assets/Yare_mockup.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,8 +19,22 @@ const projects = [
     description:
       "Front-end maintenance CRM with three surfaces — agent helpdesk, customer portal, and public case tracker — featuring a case-to-work-order lifecycle, AI-assisted intake, live phone-call simulation, and templated status emails.",
     isProject: true,
+    mediaUrl: NexaHubMockup,
+    mediaType: "image",
     tags: ["React", "JavaScript", "Tailwind CSS", "Vite", "React Router", "Headless UI", "Recharts", "Context API", "Responsive Design"],
     link: "https://seunafa.github.io/maintenance_crm_app/",
+  },
+  {
+    id: 3,
+    label: "02",
+    title: "Yare — Luxury E-Commerce Platform",
+    description:
+      "Luxury e-commerce platform for watches and jewelry built with Blazor WebAssembly, featuring a customer storefront with filtering, cart, and checkout, plus an admin dashboard for product management and analytics. Fully migrated from ASP.NET Core MVC to run entirely in the browser.",
+    isProject: true,
+    mediaUrl: YareMockup,
+    mediaType: "image",
+    tags: ["C#", "Blazor WASM", ".NET 8", "Bootstrap", "Responsive Design", "LocalStorage", "Component Architecture", "Admin CRUD"],
+    link: "https://seunafa.github.io/Yare_WebApp/",
   },
 ];
 
@@ -297,45 +313,16 @@ export default function ProjectsSection() {
                 <div className="project-imgPlaceholder flex-none lg:flex-1 lg:min-h-0 flex justify-center items-center overflow-hidden bg-inkLightBlack px-8 pt-16 pb-5 lg:py-6 lg:pr-5 lg:pl-[68px]">
                   {/* Screen mockup — js-project-img kept for GSAP targeting */}
                   <div className="js-project-img project-imgContent relative flex items-center justify-center w-full h-full">
-                    <div
+                    <img
+                      src={project.mediaUrl}
+                      alt={project.title}
                       className="relative select-none max-w-full sm:max-w-[80%] lg:max-w-full mx-auto"
                       style={{
-                        // Fill the column width, but never let the 16/9 frame grow
-                        // taller than the section's available height (which would be
-                        // clipped on short viewports). Cap width by height * 16/9.
-                        // (On mobile the max-w above also keeps the video compact so
-                        // the info below it has room within the fixed-height panel.)
                         width: "min(100%, calc((100svh - 150px) * 16 / 9))",
                         filter: "drop-shadow(0 24px 48px rgba(0,0,0,0.75))",
+                        display: "block",
                       }}
-                    >
-                      {/* Bezel */}
-                      <div style={{
-                        background: "#18181b",
-                        border: "2px solid #3f3f46",
-                        borderRadius: 10,
-                        padding: "8px",
-                        boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06)",
-                        position: "relative",
-                      }}>
-                        {/* Screen */}
-                        <div style={{
-                          borderRadius: 6,
-                          overflow: "hidden",
-                          aspectRatio: "16/9",
-                          background: "#000",
-                        }}>
-                          <iframe
-                            src="https://www.youtube.com/embed/vAUKPq1KS8E?autoplay=1&mute=1&loop=1&playlist=vAUKPq1KS8E&controls=0&modestbranding=1&rel=0&playsinline=1"
-                            title={project.title}
-                            style={{ width: "100%", height: "100%", border: 0, display: "block" }}
-                            allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-                            allowFullScreen
-                          />
-                        </div>
-                      </div>
-
-                    </div>
+                    />
                   </div>
                 </div>
 
