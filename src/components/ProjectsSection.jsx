@@ -33,7 +33,7 @@ const projects = [
     isProject: true,
     mediaUrl: YareMockup,
     mediaType: "image",
-    tags: ["C#", "Blazor WASM", ".NET 8", "Bootstrap", "Responsive Design", "LocalStorage", "Component Architecture", "Admin CRUD"],
+    tags: ["C#", "Blazor WASM", ".NET 8", "JavaScript", "Bootstrap", "Responsive Design", "LocalStorage", "Component Architecture", "Admin CRUD"],
     link: "https://seunafa.github.io/Yare_WebApp/",
   },
 ];
