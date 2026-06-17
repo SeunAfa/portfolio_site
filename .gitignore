@@ -27,3 +27,8 @@ dist-ssr
 .env
 *.mp4
 public/nexahub.mp4
+
+# Playwright
+test-results
+playwright-report
+playwright/.cache
