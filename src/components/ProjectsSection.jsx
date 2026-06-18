@@ -83,7 +83,7 @@ export default function ProjectsSection() {
       // DWELL gives each panel its own stretch of scroll where it's held fully in
       // view (like the About section's staged scroll), so a fast scroll still
       // shows every slide instead of blowing straight through the pan.
-      const DWELL = 600;                              // px each panel is held
+      const DWELL = 300;                              // px each panel is held
       const numPans   = panels.length - 1;            // panel transitions
       const numPanels = panels.length;                // intro + project panels
       const PW = panels[0].getBoundingClientRect().width; // panel width (build-time)
@@ -188,11 +188,10 @@ export default function ProjectsSection() {
         start: pinStart,
         end: () => `+=${totalScrollLength()}`,
         pin: true,
-        // scrub:1 keeps the horizontal pan tracking close to the scroll position.
-        // (Was 2 — the heavier lag meant that on reverse-scroll the pan trailed
-        // far behind, so the onLeaveBack progress(0) reset showed as a visible
-        // jerk when going back into / past Projects.)
-        scrub: 1,
+        // scrub:0.4 keeps the horizontal pan tracking the scroll position closely
+        // with only a touch of weight, so it feels like moving the content directly
+        // rather than a heavier 1s catch-up lag (which read as floaty / trailing).
+        scrub: 0.4,
         anticipatePin: 1,
         // NOTE: fastScrollEnd was removed. It released the pin early whenever
         // scroll velocity was high (a normal mobile flick, or the fast smooth-
@@ -250,12 +249,13 @@ export default function ProjectsSection() {
 
             const range = upper - lower;
             const frac = range ? (value - lower) / range : 0;
-            // Forward: advance to the next panel after ~20% of scroll (eager).
-            // Backward: hold the current panel until ~75% scrolled back (sticky),
-            // so scrolling UP from Contact snaps onto the LAST project instead of
-            // flying past it to the intro.
-            const FWD_THRESHOLD  = 0.2;
-            const BACK_THRESHOLD = 0.25;
+            // Directional with a moderate forward threshold: a normal scroll
+            // gesture (~1/3 of the way) carries you to the next panel, so you
+            // never have to "scroll hard" past the halfway point to advance —
+            // but it isn't so eager (was 0.2) that it grabs on a tiny nudge.
+            // Backward uses the same threshold so reversing feels symmetric.
+            const FWD_THRESHOLD  = 0.32;
+            const BACK_THRESHOLD = 0.32;
             const dir = self && self.direction ? self.direction : 0;
 
             if (dir > 0) return frac > FWD_THRESHOLD ? upper : lower;       // scrolling forward
