@@ -106,7 +106,12 @@ export default function AboutMeSection() {
           pin: true,
           scrub: 1,
           anticipatePin: 1,
-          fastScrollEnd: 3000,
+          // NOTE: fastScrollEnd removed. On a fast scroll-down it released the
+          // pin early (before the true end), so the scroll snapped to catch up
+          // and About slid away abruptly while Skills slid up over the still-
+          // clearing content ("unclamping"). Holding the pin to the real
+          // boundary lets onLeave complete the animation for a clean hand-off.
+          // (Same fix already applied to ProjectsSection.)
           invalidateOnRefresh: true,
           // Force the timeline to its boundary the instant the pin releases.
           // Without this, the scrub lag leaves letters mid-scatter / Section 2
