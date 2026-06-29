@@ -45,20 +45,27 @@ export function smoothScrollTo(href) {
       }
     } else {
       const st = ScrollTrigger.getById("projects-unified");
-      if (st) {
-        // Suppress the section's snap for the duration of this jump so it
-        // can't fire a competing tween that pulls the view into the panel
-        // and back. Land exactly on the hero-intro snap point (600px into
-        // the pin) and let the scrub fade the hero in naturally.
-        window.__suppressProjectsSnap = true;
-        window.scrollTo({ top: st.start + 1100, behavior: "smooth" });
-        clearTimeout(window.__projectsSnapTimer);
-        window.__projectsSnapTimer = setTimeout(() => {
-          window.__suppressProjectsSnap = false;
-        }, 1200);
-      } else {
-        window.scrollTo({ top: pinStart + 1100, behavior: "smooth" });
-      }
+      // Land exactly on the hero-intro snap point (HERO_SCROLL_DISTANCE = 1100px
+      // into the pin) so the section opens on its intro — never a project panel.
+      const target = (st ? st.start : pinStart) + 1100;
+      // Keep the section's snap suppressed for the WHOLE scroll. The old fixed
+      // 1200ms timer was racey on mobile: native smooth-scroll there often runs
+      // longer than the timeout, so the snap re-engaged mid-flight and yanked the
+      // view onto the first/last project. Driving the scroll with a GSAP tween and
+      // lifting suppression in onComplete makes the suppression window cover
+      // exactly the scroll, regardless of distance or device.
+      window.__suppressProjectsSnap = true;
+      clearTimeout(window.__projectsSnapTimer);
+      gsap.to(window, {
+        scrollTo: { y: target, autoKill: false },
+        duration: 1.2,
+        ease: "power2.out",
+        onComplete: () => {
+          window.__projectsSnapTimer = setTimeout(() => {
+            window.__suppressProjectsSnap = false;
+          }, 100);
+        },
+      });
     }
   } else {
     window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 79, behavior: "smooth" });
