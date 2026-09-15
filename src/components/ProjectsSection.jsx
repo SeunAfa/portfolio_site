@@ -15,7 +15,7 @@ const projects = [
   {
     id: 2,
     label: "01",
-    title: "NexaHub — Maintenance CRM",
+    title: "NexaHub — Facility Maintenance CRM",
     description:
       "Front-end maintenance CRM with three surfaces — agent helpdesk, customer portal, and public case tracker — featuring a case-to-work-order lifecycle, AI-assisted intake, live phone-call simulation, and templated status emails.",
     isProject: true,
