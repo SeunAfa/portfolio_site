@@ -128,7 +128,7 @@ export default function HeroSection() {
 
         {/* Description */}
         <p data-ha className="text-base sm:text-lg text-white mt-4 max-w-sm leading-relaxed text-left">
-          Building responsive, accessible, and user-focused web applications.
+          Building web apps, dashboards, and design-led digital experiences.
         </p>
 
         {/* CTAs */}
@@ -182,7 +182,7 @@ export default function HeroSection() {
         {/* Description */}
         <p data-ha className="text-white mt-6 max-w-md leading-relaxed text-left"
            style={{ fontSize: "clamp(1rem, 1.4vw, 1.2rem)" }}>
-          Building responsive, accessible, and user-focused web applications.
+          Building web apps, dashboards, and design-led digital experiences.
         </p>
 
         {/* CTAs */}
