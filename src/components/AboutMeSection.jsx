@@ -382,12 +382,13 @@ export default function AboutMeSection() {
                 <span className="text-brightBlue font-extrabold italic"> Me</span>
               </h1>
               <p className="text-sm sm:text-base md:text-base pt-3 pb-2 text-left text-white/80 leading-relaxed">
-                I'm Seun. I studied Creative Tech and am now pursuing a career in
-                Frontend Development. My background in design and interactive
-                technologies gives me a creative edge in coding, allowing me to
-                build engaging, user-focused web applications using JavaScript,
-                React, React Native, and C#. I'm passionate about combining design
-                and technical skills to create seamless digital experiences.
+                I'm Seun. I studied Creative Tech, covering software development,
+                UX/UI design, Unity, Blender and AR, then picked up SQL and Power
+                BI along the way. I build full-stack web apps with React, React
+                Native, JavaScript, C# and Blazor, and design them too — comfortable
+                in Figma and Adobe XD for UX/UI work. I get a genuine kick out of
+                untangling clunky user flows and turning messy data into something
+                people actually want to use.
               </p>
             </div>
           </div>
